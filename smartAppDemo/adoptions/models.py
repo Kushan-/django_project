@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 
-class pet(models.Model):
+class Pet(models.Model):
     SEX_CHOICE = [('M', 'Male'), ('F', 'Female')]
     name = models.CharField(max_length=100)
     submitter = models.CharField(max_length=30)
@@ -15,8 +15,10 @@ class pet(models.Model):
     sex = models.CharField(choices=SEX_CHOICE, max_length=1, blank=True)
     submission_date = models.DateTimeField()
     age = models.IntegerField(null=True)
-    vaccination = models.ManyToManyField('Vaccine', blank=True)
+    vaccinations = models.ManyToManyField('Vaccine', blank=True)
 
-class vaccine(models.Model):
+class Vaccine(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+            return self.name
