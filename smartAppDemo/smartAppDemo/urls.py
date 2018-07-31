@@ -13,6 +13,17 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+
+ducky -> will match ducky anywhere in the string (rubber ducky)
+\d -> match integer
+\d+ -> one or more digit character till it ends
+^admin/ --> matching string accept admin/
+suffix$ -> in the sequence(will match any string ends with suffix)
+^$ -> 
+
+
+
+
 """
 
 
@@ -20,6 +31,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from adoptions import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home, name='home'),
+    url(r'^adoptions/(\d+)/', views.pet_details,name='pet_details'),
 ]
